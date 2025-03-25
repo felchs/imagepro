@@ -1,0 +1,32 @@
+#version 330 core
+
+layout(location = 0) in vec3 position;  // Vertex position
+layout(location = 1) in vec2 texCoord;  // Original texture coordinates
+
+out vec2 fragTexCoord;  // Output texture coordinates to the fragment shader
+
+uniform float zoom;     // Zoom factor
+uniform vec2 offset;    // Offset in X and Y direction
+
+uniform float xScaler;
+uniform float yScaler;
+
+void main()
+{
+    // Apply scaling to the vertex position
+    vec3 scaledPosition = position;
+    scaledPosition.x *= xScaler;
+    scaledPosition.y *= yScaler;
+
+    // Apply zoom by scaling the texture coordinates
+    vec2 zoomedTexCoord = texCoord * zoom;
+
+    // Apply offset to the zoomed texture coordinates
+    vec2 offsetTexCoord = zoomedTexCoord + offset;
+
+    // Output the modified texture coordinates
+    fragTexCoord = offsetTexCoord;
+
+    // Pass the vertex position to the fragment shader (in object space for simplicity)
+    gl_Position = vec4(scaledPosition, 1.0);
+}
