@@ -122,6 +122,12 @@
     <ClInclude Include="common\string_utils.hpp">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="Int.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="License.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
@@ -135,6 +141,9 @@
   <ItemGroup>
     <Text Include="include\external\imgui\LICENSE.txt">
       <Filter>imgui</Filter>
+    </Text>
+    <Text Include="properties.txt">
+      <Filter>Arquivos de Recurso</Filter>
     </Text>
   </ItemGroup>
 </Project>

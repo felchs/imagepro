@@ -1,0 +1,5 @@
+#this site property is to send the user to a website of payment
+site=http://yourendpoint.example
+
+#this is the backend of the server to read info from about the registered licenses
+license=http://yourendpoint.example

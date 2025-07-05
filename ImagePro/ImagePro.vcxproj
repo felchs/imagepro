@@ -109,7 +109,7 @@
       </SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);_DEBUG;WIN32;_WINDOWS;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug";</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\workspace_image\ImagePro\ImagePro\include\external\imgui;C:\workspace_image\ImagePro\ImagePro\include\external\AntTweakBar-1.16\include;C:\workspace_image\ImagePro\ImagePro\include\external\glfw-3.1.2\include;C:\workspace_image\ImagePro\ImagePro\include\external\glm-0.9.7.1;C:\workspace_image\ImagePro\ImagePro\include\external\glew-1.13.0\include;C:\workspace_image\ImagePro\ImagePro\include\external\assimp-3.0.1270\include;C:\workspace_image\ImagePro\ImagePro\include\external\bullet-2.81-rev2613\src;C:\workspace_image\ogl\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\workspace_image\ImagePro\ImagePro\include\external\imgui;C:\workspace_image\ImagePro\ImagePro\include\external\AntTweakBar-1.16\include;C:\workspace_image\ImagePro\ImagePro\include\external\glfw-3.1.2\include;C:\workspace_image\ImagePro\ImagePro\include\external\glm-0.9.7.1;C:\workspace_image\ImagePro\ImagePro\include\external\glew-1.13.0\include;C:\workspace_image\ImagePro\ImagePro\include\external\assimp-3.0.1270\include;C:\workspace_image\ImagePro\ImagePro\include\external\bullet-2.81-rev2613\src;C:\workspace_image\ogl\.;C:\workspace_image\payme\PayMe\include\external\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
@@ -175,6 +175,8 @@
     <ClInclude Include="include\external\imgui\imstb_rectpack.h" />
     <ClInclude Include="include\external\imgui\imstb_textedit.h" />
     <ClInclude Include="include\external\imgui\imstb_truetype.h" />
+    <ClInclude Include="Int.h" />
+    <ClInclude Include="License.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stb_image_write.h" />
   </ItemGroup>
@@ -185,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="include\external\imgui\LICENSE.txt" />
+    <Text Include="properties.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
