@@ -7,18 +7,16 @@
 
 #include "common/string_utils.hpp"
 
-// Then include ImGui headers
+#include "Int.h"
+
+// ImGui headers
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-// Include GLEW
 #include <GL/glew.h>
-
-// Include GLFW
 #include <GLFW/glfw3.h>
 
-// Include GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -26,6 +24,8 @@ using namespace glm;
 
 #include "common/shader.hpp"
 #include "common/texture.hpp"
+
+#include "License.h"
 
 namespace imagepro
 {
@@ -134,7 +134,6 @@ namespace imagepro
 			}
 		}
 
-
 		void cursor_position_callback_impl(GLFWwindow* window, double xpos, double ypos) 
 		{
 			deltaX = xpos - lastX;
@@ -175,6 +174,9 @@ namespace imagepro
 
 		int Init()
 		{
+			showAlertChecking = true;
+			License::getInstance().checkLicense(abxPtr, true);
+
 			// Initialize GLFW
 			if (!glfwInit())
 			{
@@ -319,28 +321,30 @@ namespace imagepro
 				//
 				// process input
 				//
+
 				{
-					if (glfwGetKey(mp_Window, GLFW_KEY_R) == GLFW_PRESS)
+
+					if (glfwGetKey(mp_Window, GLFW_KEY_R) == GLFW_PRESS && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337))
 					{
 						rSlider += offsetSlider;
 					}
-					if (glfwGetKey(mp_Window, GLFW_KEY_E) == GLFW_PRESS)
+					if (glfwGetKey(mp_Window, GLFW_KEY_E) == GLFW_PRESS && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337))
 					{
 						rSlider -= offsetSlider;
 					}
-					if (glfwGetKey(mp_Window, GLFW_KEY_G) == GLFW_PRESS)
+					if (glfwGetKey(mp_Window, GLFW_KEY_G) == GLFW_PRESS && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337))
 					{
 						gSlider += offsetSlider;
 					}
-					if (glfwGetKey(mp_Window, GLFW_KEY_F) == GLFW_PRESS)
+					if (glfwGetKey(mp_Window, GLFW_KEY_F) == GLFW_PRESS && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337))
 					{
 						gSlider -= offsetSlider;
 					}
-					if (glfwGetKey(mp_Window, GLFW_KEY_B) == GLFW_PRESS)
+					if (glfwGetKey(mp_Window, GLFW_KEY_B) == GLFW_PRESS && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337))
 					{
 						bSlider += offsetSlider;
 					}
-					if (glfwGetKey(mp_Window, GLFW_KEY_V) == GLFW_PRESS)
+					if (glfwGetKey(mp_Window, GLFW_KEY_V) == GLFW_PRESS && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337))
 					{
 						bSlider -= offsetSlider;
 					}
@@ -376,9 +380,13 @@ namespace imagepro
 				GLint keepLocation = glGetUniformLocation(alienProgramID, "keep");
 
 				// Example of setting uniform values (set based on your needs)
-				glUniform3f(freqLocation, rSlider, gSlider, bSlider);
+				glUniform3f(freqLocation, (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337) ? rSlider : 0, 
+										  (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337) ? gSlider : 0,
+										  (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337) ? bSlider : 0);
 				glUniform3f(phaseShiftLocation, 0.0f, 0.0f, 0.0f);
-				glUniform3f(keepLocation, rSliderChecked ? 1 : 0, gSliderChecked ? 1 : 0, bSliderChecked ? 1 : 0);
+				glUniform3f(keepLocation, rSliderChecked && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337) ? 1 : 0, 
+										  gSliderChecked && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337) ? 1 : 0,
+										  bSliderChecked && (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() == 1337) ? 1 : 0);
 
 				//
 				// zoom offset
@@ -442,7 +450,7 @@ namespace imagepro
 				//
 				// ImGui creation
 				//
-
+				ImGui::SetNextWindowPos(ImVec2(10, 100));
 				ImGui::SetNextWindowSize(ImVec2(290, 360));
 				ImGui::Begin("Options");
 				ImGui::Text("Color mix");
@@ -472,6 +480,76 @@ namespace imagepro
 				}
 				ImGui::End();
 
+				//
+				// if license is not ok
+				//
+				if ((reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() != 1337))
+				{
+					ImGui::SetNextWindowPos(ImVec2(10, 10));
+					ImGui::SetNextWindowSize(ImVec2(380, 80));
+					ImGui::Begin("Activate");
+					if (ImGui::Button("Click on this button open Website and activate..."))
+					{
+						std::string endpoint = License::getInstance().getSiteEndpoint();
+#ifdef _WIN32
+						ShellExecuteA(nullptr, "open", endpoint.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+#elif __APPLE__
+						system(endpoint);
+#else // Linux
+						system(endpoint);
+#endif
+					}
+
+					if (ImGui::Button("Already Activated? Click here to check License."))
+					{
+						License::getInstance().checkLicense(abxPtr, true);
+						showAlertChecking = true;
+					}
+
+					ImGui::End();
+				}
+
+				if (showAlertChecking && !License::getInstance().isLicenseChecked())
+				{
+					ImGui::OpenPopup("AlertChecking");
+				}
+
+				if (ImGui::BeginPopupModal("AlertChecking", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+				{
+					ImGui::Text("Checking the license, wait a moment...");
+					ImGui::EndPopup();
+				}
+
+				if (showAlertChecking && License::getInstance().isLicenseChecked())
+				{
+					ImGui::OpenPopup("Alert");
+				}
+
+				if (ImGui::BeginPopupModal("Alert", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+				{
+					if ((reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5)->get() != 1337))
+					{
+						ImGui::Text("Your license is not valid.\nCheck if you have enabled it.\nOtherwise send us support message.");
+					}
+					else
+					{
+						ImGui::Text("Your license is ok.\nClick ok to continue.\nThank you!");
+					}
+					ImGui::Separator();
+
+					float windowWidth = ImGui::GetWindowSize().x;
+					float buttonWidth = 120.0f;
+					ImGui::SetCursorPosX((windowWidth - buttonWidth) * 0.5f);
+					if (ImGui::Button("OK", ImVec2(buttonWidth, 0)))
+					{
+						ImGui::CloseCurrentPopup();
+						showAlertChecking = false;
+						License::getInstance().setLicenseChecked(false);
+					}
+
+					ImGui::EndPopup();
+				}
+
 				ImGui::Render();
 				ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -481,10 +559,13 @@ namespace imagepro
 				glfwSwapBuffers(mp_Window);
 				glfwPollEvents();
 
+				License::getInstance().checkLicense(abxPtr, false);
 			}
 			while (glfwGetKey(mp_Window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 				glfwWindowShouldClose(mp_Window) == 0);
 		}
+		
+		bool showAlertChecking = false;
 
 		void Shutdown()
 		{
@@ -506,11 +587,18 @@ namespace imagepro
 
 		void Run()
 		{
+			std::srand(static_cast<unsigned>(std::time(nullptr)));
+			Int* realPtr = new Int(0);
+			abxPtr = reinterpret_cast<uintptr_t>(realPtr) ^ 0xA5A5A5A5;
+
 			Init();
 
 			MainLoop();
 
 			Shutdown();
+
+			Int* pi = reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5);
+			delete pi;
 		}
 
 		//
@@ -548,6 +636,7 @@ namespace imagepro
 		int width;
 		int height;
 
+		uintptr_t abxPtr;
 
 		//
 		// 
@@ -634,4 +723,3 @@ int main(void)
 
 	return 0;
 }
-
