@@ -7,6 +7,9 @@
 #include <GLFW/glfw3.h>
 
 #include "../stb_image.h"
+#include "../agedetection.h"
+
+#define CHECK_AGE false
 
 GLuint LoadTextureFromFile(const char* filename, int& width, int& height)
 {
@@ -14,9 +17,19 @@ GLuint LoadTextureFromFile(const char* filename, int& width, int& height)
 	int channels;
 	unsigned char* image = stbi_load(filename, &width, &height, &channels, STBI_rgb_alpha); // Load as RGBA
 
-	if (image == nullptr) {
+	if (image == nullptr) 
+	{
 		printf("Failed to load image: %s\n", filename);
 		return 0;
+	}
+
+	if (CHECK_AGE)
+	{
+		cv::Mat img_rgba(height, width, CV_8UC4, image);
+		cv::Mat img_bgr;
+		cv::cvtColor(img_rgba, img_bgr, cv::COLOR_RGBA2BGR);
+
+		imagepro::AgeDetection::GetInstance().registerCurrImage(img_bgr);
 	}
 
 	GLuint textureID;
