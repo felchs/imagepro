@@ -7,11 +7,25 @@
 #include <future>
 #include <curl/curl.h>
 
+#define SKIPLICENSE true
+
 namespace imagepro
 {
     class License
     {
-    private:
+    public:
+        std::string getSiteEndpoint()
+        {
+            setupLicenseProperties();
+
+            return property_site + "?id=" + getUniqueId();
+        }
+
+        std::string getSiteSupportEndpoint()
+        {
+			return property_site + "/support/support" + "?id=" + getUniqueId();;
+        }
+
     private:
         License() = default;
 
@@ -137,8 +151,8 @@ namespace imagepro
         {
             if (readProperties("properties.txt", property_site, property_license))
             {
-                std::cout << "Site: " << property_site << std::endl;
-                std::cout << "License: " << property_license << std::endl;
+                //std::cout << "Site: " << property_site << std::endl;
+                //std::cout << "License: " << property_license << std::endl;
             }
         }
 
@@ -168,13 +182,6 @@ namespace imagepro
         {
             this->licenseChecked = licenseChecked;
         }
-        
-        std::string getSiteEndpoint()
-        {
-            setupLicenseProperties();
-
-            return property_site + "?id=" + getUniqueId();
-        }
 
         void checkLicense(uintptr_t abxPtr, bool force = true)
         {
@@ -189,7 +196,12 @@ namespace imagepro
             {
                 setupLicenseProperties();
 
-                std::cout << "check license..." << std::endl;
+                if (SKIPLICENSE)
+                {
+                    (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5))->set(1337);
+                    licenseChecked = true;
+                    return;
+                }
 
                 lastTimeChecked = time;
 

@@ -22,12 +22,15 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{281948a2-e1dd-4868-bc05-9a36966bd485}</UniqueIdentifier>
     </Filter>
+    <Filter Include="opencv">
+      <UniqueIdentifier>{e22d942a-2fb1-40ea-9d81-e84f6d062991}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImagePro.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Render.cpp">
+    <ClCompile Include="render.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="common\quaternion_utils.cpp">
@@ -68,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="common\string_utils.cpp">
       <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="agedetection.cpp">
+      <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,10 +128,22 @@
     <ClInclude Include="common\string_utils.hpp">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="Int.h">
+    <ClInclude Include="int.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="License.h">
+    <ClInclude Include="license.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="agedetection.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="include\external\opencv4_x64-windows\include\opencv4\opencv2\opencv.hpp">
+      <Filter>opencv</Filter>
+    </ClInclude>
+    <ClInclude Include="editcommand.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="render.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
@@ -143,6 +161,12 @@
       <Filter>imgui</Filter>
     </Text>
     <Text Include="properties.txt">
+      <Filter>Arquivos de Recurso</Filter>
+    </Text>
+    <Text Include="imagepro_terms_of_use.txt">
+      <Filter>Arquivos de Recurso</Filter>
+    </Text>
+    <Text Include="imagepro_license.txt">
       <Filter>Arquivos de Recurso</Filter>
     </Text>
   </ItemGroup>

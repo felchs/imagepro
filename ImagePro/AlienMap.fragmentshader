@@ -38,7 +38,4 @@ void main() {
     // Set the final color (output is RGBA)
     fragColor = vec4(outputColor, in_v.a); // Preserve the alpha channel (in_v.a)
 
-
-//    vec4 texColor = texture(inputTexture, fragTexCoord);
-//    fragColor = texColor * vec4(colorTint, 1.0);
 }
