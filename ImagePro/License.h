@@ -7,8 +7,6 @@
 #include <future>
 #include <curl/curl.h>
 
-#define SKIPLICENSE false
-
 namespace imagepro
 {
     class License
@@ -196,12 +194,11 @@ namespace imagepro
             {
                 setupLicenseProperties();
 
-                if (SKIPLICENSE)
-                {
+                #ifdef SKIPLICENSE
                     (reinterpret_cast<Int*>(abxPtr ^ 0xA5A5A5A5))->set(1337);
                     licenseChecked = true;
                     return;
-                }
+                #endif
 
                 lastTimeChecked = time;
 

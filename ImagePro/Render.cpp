@@ -513,7 +513,7 @@ namespace imagepro
 		// borders
 		//
 		ImVec2 p_min = ImVec2(0, 19); // top-left
-		ImVec2 p_max = ImVec2(271, heightFramebuffer); // top-right
+		ImVec2 p_max = ImVec2(271, static_cast<float>(heightFramebuffer)); // top-right
 		ImU32 color = IM_COL32(36, 36, 36, 255);
 		ImGui::GetBackgroundDrawList()->AddRectFilled(p_min, p_max, color);
 
