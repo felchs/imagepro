@@ -7,7 +7,7 @@
 #include <future>
 #include <curl/curl.h>
 
-#define SKIPLICENSE true
+#define SKIPLICENSE false
 
 namespace imagepro
 {

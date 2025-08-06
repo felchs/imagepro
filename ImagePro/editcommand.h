@@ -42,19 +42,17 @@ namespace imagepro
 
 		bool CanUndo()
 		{
-			int sz = commandList.size();
-			if (sz == 0)
+			if (commandList.size() == 0)
 			{
 				return false;
 			}
 
-			return currIdx + 1 < sz;
+			return currIdx + 1 < commandList.size();
 		}
 
 		bool CanRedo()
 		{
-			int sz = commandList.size();
-			if (sz == 0)
+			if (commandList.size() == 0)
 			{
 				return false;
 			}
