@@ -119,7 +119,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\workspace_image\stb;C:\workspace_image\ImagePro\ImagePro\include\external\opencv4_x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;C:\workspace_image\ImagePro\ImagePro\include\external\build\glfw-3.1.2\src\Debug\glfw3.lib;C:\workspace_image\ImagePro\ImagePro\include\external\build\Debug\GLEW_1130.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;opencv_core4d.lib;opencv_imgproc4d.lib;opencv_highgui4d.lib;opencv_imgcodecs4d.lib;opencv_videoio4d.lib;opencv_dnn4d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;include\external\build\glfw-3.1.2\src\Debug\glfw3.lib;include\external\build\Debug\GLEW_1130.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;opencv_core4d.lib;opencv_imgproc4d.lib;opencv_highgui4d.lib;opencv_imgcodecs4d.lib;opencv_videoio4d.lib;opencv_dnn4d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -133,13 +133,14 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\workspace_image\ImagePro\ImagePro\include;C:\workspace_image\ImagePro\ImagePro\include\external\imgui;C:\workspace_image\ImagePro\ImagePro\include\external\imgui\sdlgpu3;C:\workspace_image\ImagePro\ImagePro\include\external\AntTweakBar-1.16\include;C:\workspace_image\ImagePro\ImagePro\include\external\glfw-3.1.2\include;C:\workspace_image\ImagePro\ImagePro\include\external\glm-0.9.7.1;C:\workspace_image\ImagePro\ImagePro\include\external\glew-1.13.0\include;C:\workspace_image\ImagePro\ImagePro\include\external\assimp-3.0.1270\include;C:\workspace_image\ImagePro\ImagePro\include\external\bullet-2.81-rev2613\src;C:\workspace_image\ogl\.;C:\workspace_image\ImagePro\ImagePro\include\external\opencv4_x64-windows\include\opencv4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;include\external\glfw-3.1.2\src\Release\glfw3.lib;include\external\Release\GLEW_1130.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;opencv_core4.lib;opencv_imgproc4.lib;opencv_highgui4.lib;opencv_imgcodecs4.lib;opencv_videoio4.lib;opencv_dnn4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;include\external\build\glfw-3.1.2\src\Release\glfw3.lib;include\external\build\Release\GLEW_1130.lib;include\external\build\Release\ANTTWEAKBAR_116_OGLCORE_GLFW.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;opencv_core4.lib;opencv_imgproc4.lib;opencv_highgui4.lib;opencv_imgcodecs4.lib;opencv_videoio4.lib;opencv_dnn4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -150,7 +151,7 @@
     <ClCompile Include="common\text2D.cpp" />
     <ClCompile Include="common\texture.cpp" />
     <ClCompile Include="common\vboindexer.cpp" />
-    <ClCompile Include="ImagePro.cpp" />
+    <ClCompile Include="image_utils.h" />
     <ClCompile Include="include\external\imgui\imgui.cpp" />
     <ClCompile Include="include\external\imgui\imgui_demo.cpp" />
     <ClCompile Include="include\external\imgui\imgui_draw.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="include\external\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="include\external\imgui\imgui_tables.cpp" />
     <ClCompile Include="include\external\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="render.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +197,9 @@
     <Text Include="imagepro_terms_of_use.txt" />
     <Text Include="include\external\imgui\LICENSE.txt" />
     <Text Include="properties.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="uvtemplate.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

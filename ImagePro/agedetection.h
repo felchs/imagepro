@@ -106,7 +106,7 @@ namespace imagepro
 
                     age_net->setInput(blob);
                     cv::Mat age_pred = age_net->forward();
-                    int max_idx = std::max_element(age_pred.begin<float>(), age_pred.end<float>()) - age_pred.begin<float>();
+                    int max_idx = static_cast<int>(std::max_element(age_pred.begin<float>(), age_pred.end<float>()) - age_pred.begin<float>());
 
                     std::string predicted_age = AGE_GROUPS[max_idx];
 

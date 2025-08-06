@@ -11,6 +11,8 @@ uniform vec2 offset;    // Offset in X and Y direction
 uniform float xScaler;
 uniform float yScaler;
 
+uniform mat4 MVP;
+
 void main()
 {
     // Apply scaling to the vertex position
@@ -28,5 +30,5 @@ void main()
     fragTexCoord = offsetTexCoord;
 
     // Pass the vertex position to the fragment shader (in object space for simplicity)
-    gl_Position = vec4(scaledPosition, 1.0);
+    gl_Position = MVP * vec4(scaledPosition, 1.0);
 }

@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ImagePro.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="render.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
@@ -74,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="agedetection.cpp">
       <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="image_utils.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,5 +172,10 @@
     <Text Include="imagepro_license.txt">
       <Filter>Arquivos de Recurso</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="uvtemplate.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
   </ItemGroup>
 </Project>
