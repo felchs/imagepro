@@ -55,7 +55,6 @@ imagepro/
 ├── shaders/ # GLSL shaders for rendering
 ├── demo/ # Sample/demo applications
 ├── assets/ # Images, models, and AI resources
-├── CMakeLists.txt # Project build configuration
 └── README.md
 ```
 
@@ -91,9 +90,7 @@ These steps will guide you to build ImagePro on Windows using Visual Studio 2022
 
 ✅ Step 1: Install Visual Studio 2022
 Install the following workloads using Visual Studio Installer:
-
 ✔️ Desktop development with C++
-✔️ Optional: CMake tools for Visual Studio
 
 ✅ Step 2: Install Dependencies with vcpkg
 git clone https://github.com/microsoft/vcpkg.git
