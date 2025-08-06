@@ -17,8 +17,10 @@
 #include "imgui_impl_opengl3.h"
 
 #define GLEW_STATIC
+#define GLFW_EXPOSE_NATIVE_WIN32
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <GLFW/glfw3native.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -75,6 +77,8 @@ namespace imagepro
 		bool SavePixelsToFile(int width, int height, const std::vector<unsigned char>& bgraPixels, const std::string& filename);
 
 		int Init();
+
+		void SetIcon();
 
 		void ProcessInput();
 

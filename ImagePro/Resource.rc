@@ -1,0 +1,4 @@
+#include "resource.h"
+LANGUAGE 9, 1
+
+IDI_ICON1 ICON DISCARDABLE "imagepro.ico"

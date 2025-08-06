@@ -358,6 +358,8 @@ namespace imagepro
 			return -1;
 		}
 
+		SetIcon();
+
 		glfwSetWindowUserPointer(mp_Window, this);
 
 		glfwSetMouseButtonCallback(mp_Window, mouse_button_callback);
@@ -426,6 +428,35 @@ namespace imagepro
 
 		return 0;
 	}
+
+    void CRender::SetIcon()
+    {
+       if (!mp_Window) // Ensure mp_Window is initialized
+       {
+           std::cerr << "Error: mp_Window is not initialized!" << std::endl;
+           return;
+       }
+
+       HWND hwnd = glfwGetWin32Window(mp_Window);
+
+	   HICON hNewIcon = (HICON)LoadImage(
+		   NULL,
+		   L"imagepro.ico",
+		   IMAGE_ICON,
+		   0, 0,
+		   LR_LOADFROMFILE | LR_DEFAULTSIZE
+	   );
+
+       if (hNewIcon)
+       {
+           SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)hNewIcon);
+           SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hNewIcon);
+       }
+       else
+       {
+           MessageBox(NULL, L"Failed to load icon!", L"Error", MB_OK | MB_ICONERROR);
+       }
+    }
 
 	void CRender::ProcessInput()
 	{
