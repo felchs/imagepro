@@ -52,6 +52,10 @@ namespace imagepro
 
 		GLuint LoadTexture(const char* filePathName);
 
+		GLuint LoadTextureFromPastedClipboard();
+
+		void SetVertexQuadScaler(int width, int height);
+
 		void OpenFileDialog();
 
 		std::string OpenSaveFileDialog();

@@ -1,5 +1,6 @@
 ﻿// Include standard headers
 #include "render.h"
+#include "utils.h"
 
 namespace imagepro
 {
@@ -57,9 +58,35 @@ namespace imagepro
 	{
 		GLuint texture = LoadTextureFromFile(filePathName, width, height);
 
-		xScaler = width / (float)height;
-		yScaler = height / (float)width;
+		SetVertexQuadScaler(width, height);
+
 		return texture;
+	}
+
+	GLuint CRender::LoadTextureFromPastedClipboard()
+	{
+		GLuint texture = LoadTextureFromClipboard(width, height);
+		mi_Texture = texture;
+
+		SetVertexQuadScaler(width, height);
+
+		return texture;
+	}
+
+	void CRender::SetVertexQuadScaler(int width, int height)
+	{
+		float aspect = (float)width / (float)height;
+
+		if (aspect >= 1.0f)
+		{
+			xScaler = 1.0f;
+			yScaler = 1.0f / aspect;
+		}
+		else
+		{
+			xScaler = aspect;
+			yScaler = 1.0f;
+		}
 	}
 
 	void CRender::OpenFileDialog()
@@ -484,6 +511,18 @@ namespace imagepro
 		{
 			bSlider -= offsetSlider;
 		}
+
+		if ((glfwGetKey(mp_Window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS || glfwGetKey(mp_Window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS) 
+			&& glfwGetKey(mp_Window, GLFW_KEY_C) == GLFW_PRESS)
+		{
+			copyCurrentImageToClipboardFlag = true;
+		}
+
+		if ((glfwGetKey(mp_Window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS || glfwGetKey(mp_Window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
+			&& glfwGetKey(mp_Window, GLFW_KEY_V) == GLFW_PRESS)
+		{
+			LoadTextureFromPastedClipboard();
+		}
 	}
 
 	void CRender::UpdateView()
@@ -805,9 +844,14 @@ namespace imagepro
 
 			if (ImGui::BeginMenu("Edit"))
 			{
-				if (ImGui::MenuItem("Copy"))
+				if (ImGui::MenuItem("Copy to clipboard", "Ctrl+C"))
 				{
 					copyCurrentImageToClipboardFlag = true;
+				}
+
+				if (ImGui::MenuItem("Paste from clipboard", "Ctrl+V"))
+				{
+					LoadTextureFromPastedClipboard();
 				}
 
 				ImGui::Separator();
@@ -1059,6 +1103,4 @@ namespace imagepro
 
 		} while (programRunning && glfwWindowShouldClose(mp_Window) == 0);
 	}
-
-
 }
